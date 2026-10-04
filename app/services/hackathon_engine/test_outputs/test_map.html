@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ba40ff7d3bc0e0d1a410a25ec81244b5 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+            
+                <style>
+                    .leaflet-image-layer {
+                        /* old android/safari*/
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges; /* safari */
+                        image-rendering: pixelated; /* chrome */
+                        image-rendering: -moz-crisp-edges; /* firefox */
+                        image-rendering: -o-crisp-edges; /* opera */
+                        -ms-interpolation-mode: nearest-neighbor; /* ie */
+                    }
+                </style>
+            
+        
+    
+            
+                <style>
+                    .leaflet-image-layer {
+                        /* old android/safari*/
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges; /* safari */
+                        image-rendering: pixelated; /* chrome */
+                        image-rendering: -moz-crisp-edges; /* firefox */
+                        image-rendering: -o-crisp-edges; /* opera */
+                        -ms-interpolation-mode: nearest-neighbor; /* ie */
+                    }
+                </style>
+            
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+    <div id="flood-title" style="
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        background: rgba(5, 10, 35, 0.88);
+        color: #e0eaff;
+        padding: 9px 22px 9px 14px;
+        border-radius: 10px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        border: 1.5px solid #3366cc;
+        box-shadow: 0 2px 12px rgba(0,80,255,0.25);
+        white-space: nowrap;
+        pointer-events: none;
+    ">
+        🌊 India Flood Inundation Engine
+    </div>
+    
+    <div id="flood-legend" style="
+        position: fixed;
+        bottom: 28px;
+        left: 12px;
+        z-index: 9998;
+        background: rgba(5, 10, 40, 0.92);
+        color: #c8d8ff;
+        padding: 13px 15px;
+        border-radius: 10px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        border: 1.5px solid #2244aa;
+        box-shadow: 0 4px 20px rgba(0,40,200,0.3);
+        min-width: 200px;
+        max-width: 220px;
+    ">
+        <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:#aaccff;">
+            🌊 Flood Depth
+        </div>
+        
+    <div style="height:12px; width:100%; border-radius:3px; margin:4px 0 10px 0;
+         background: linear-gradient(to right,
+             rgba(173,216,230,0.3),
+             rgba(100,149,237,0.7),
+             rgba(0,0,139,0.95));
+    "></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:#aac;margin-bottom:8px;">
+        <span>0 m</span><span>Flood Depth</span><span>Deep →</span>
+    </div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:6px;color:#aaccff;">
+            ⚠️ Risk (NDMA India)
+        </div>
+        
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(255,255,51,0.71);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">Low (< 30 cm)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(255,153,0,0.82);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">Medium (30–100 cm)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(220,20,60,0.90);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">High (1–2 m)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(128,0,128,0.96);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">Extreme (> 2 m)</span>
+        </div>
+        
+        
+        <hr style="border:none;border-top:1px solid #334;margin:8px 0;">
+        <div style="font-size:11px;color:#adc;line-height:1.7;">
+            <span style="color:#88aaff;font-weight:600;">📊 Results</span><br>
+            Flooded: <b style="color:#fff">0.00 km²</b>
+            <span style="color:#777">(0.0%)</span><br>
+            Max depth: <b style="color:#fff">0.00 m</b><br>
+            Mean depth: <b style="color:#fff">0.00 m</b>
+        </div>
+        <hr style="border:none;border-top:1px solid #334;margin:8px 0;">
+        <div style="font-size:9px;color:#557;text-align:center;">
+            India Flood Engine · van den Bout et al. 2026
+        </div>
+    </div>
+    
+    <style>
+        /* Override Folium default styles */
+        .leaflet-control-layers {
+            background: rgba(5,10,40,0.92) !important;
+            color: #c8d8ff !important;
+            border: 1.5px solid #2244aa !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 20px rgba(0,40,200,0.3) !important;
+        }
+        .leaflet-control-layers-list label {
+            color: #c8d8ff !important;
+        }
+        .leaflet-control-layers-separator {
+            border-top: 1px solid #334 !important;
+        }
+        .leaflet-bar a {
+            background: rgba(5,10,40,0.88) !important;
+            color: #c8d8ff !important;
+            border-color: #2244aa !important;
+        }
+        .leaflet-bar a:hover {
+            background: rgba(30,50,120,0.92) !important;
+        }
+        .leaflet-control-zoom-in,
+        .leaflet-control-zoom-out {
+            background: rgba(5,10,40,0.88) !important;
+            color: #c8d8ff !important;
+        }
+        .leaflet-control-scale-line {
+            background: rgba(5,10,40,0.75) !important;
+            color: #aad !important;
+            border-color: #446 !important;
+        }
+        /* Smooth overlay transitions */
+        .leaflet-image-layer {
+            transition: opacity 0.3s ease;
+        }
+    </style>
+    <script>
+        // Add keyboard shortcut: 'h' to toggle depth overlay
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'h' || e.key === 'H') {
+                var layers = document.querySelectorAll('.leaflet-image-layer');
+                layers.forEach(function(l) {
+                    l.style.opacity = (l.style.opacity === '0') ? '1' : '0';
+                });
+            }
+        });
+    </script>
+    
+            <div class="folium-map" id="map_ba40ff7d3bc0e0d1a410a25ec81244b5" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ba40ff7d3bc0e0d1a410a25ec81244b5 = L.map(
+                "map_ba40ff7d3bc0e0d1a410a25ec81244b5",
+                {
+                    center: [10.100000000000001, 76.7],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_ba40ff7d3bc0e0d1a410a25ec81244b5);
+
+            
+
+        
+    
+            var tile_layer_b05317631fb844168fca7ff0ae9a0f7f = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u00a9 Google",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b05317631fb844168fca7ff0ae9a0f7f.addTo(map_ba40ff7d3bc0e0d1a410a25ec81244b5);
+        
+    
+            var tile_layer_5906d5a7305256b8dd60a55637eb7091 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Tiles \u00a9 Esri \u2014 Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var tile_layer_cad17ba1c7d8d3c315c3a623eafa1492 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=s\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u00a9 Google",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var tile_layer_d149125fdcb7cb49283cb8c37abd5885 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var tile_layer_a6f261ba5ad6ab6feb17a0cf4bc58c58 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=m\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u00a9 Google",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var image_overlay_20c5fe4126143e387bd8fc3c6c9bbb62 = L.imageOverlay(
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAA3UlEQVR42u3csQmAMBBAUSOOYG3hMOmdIjNlCLF3EisLCyuHcAUFAxHer0WCjyNcY5i3s1E9tT4BEAEBIiBABASIgAAREAEBIiBABASIgAAREAEBIiBABASIgAAREAEBIiBABASIgAAREAGpu672A+Z8LF++L6VhMiECAkRAXOqVtK7X+OS5GPvdhAgIEAEBIiACAkRAbOql++MGbkKACAgQlS7497sJERAgAgJEQIAICBABERAgAgJEQIAICBABERAgAgJEQIAICBABERAgAgJEQIAICBABERAgetENs1YPIYvHv8EAAAAASUVORK5CYII=",
+                [[9.9, 76.5], [10.3, 76.9]],
+                {
+  "opacity": 1.0,
+  "interactive": false,
+  "zindex": 400,
+}
+            );
+        
+    
+            image_overlay_20c5fe4126143e387bd8fc3c6c9bbb62.addTo(map_ba40ff7d3bc0e0d1a410a25ec81244b5);
+        
+    
+            var image_overlay_75daa03c22f3efba45d5e8acc175a640 = L.imageOverlay(
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAu0lEQVR42u3csQlAIQxAQSN2Di0ObR1X8MMvUtwbQIJH2kRmNtWp+wIgAgJEQIAICBABASIgAgJEQIAICBABASIgAgJEQIAICBABASIgAgJEQIAICBABASIgAlK7UX3AHfv8+d7KNW2IgAARECACAkRABASIgAARECACAkRABASIHgq3322IgAARECACAkRAgAiIgAARECACAkRAgAiIgAARECACAkRAgAiIgAARECACAkRAgAiIgADRhy6TigrD48jJpwAAAABJRU5ErkJggg==",
+                [[9.9, 76.5], [10.3, 76.9]],
+                {
+  "opacity": 0.85,
+  "interactive": false,
+  "zindex": 401,
+}
+            );
+        
+    
+            var rectangle_f5230163afb6b5592c458e227a85ee58 = L.rectangle(
+                [[9.9, 76.5], [10.3, 76.9]],
+                {"bubblingMouseEvents": true, "color": "#4488ff", "dashArray": "6 4", "dashOffset": null, "fill": false, "fillColor": "#4488ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_ba40ff7d3bc0e0d1a410a25ec81244b5);
+        
+    
+            rectangle_f5230163afb6b5592c458e227a85ee58.bindTooltip(
+                `<div>
+                     Simulation domain | Flooded: 4.0%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Enter fullscreen",
+  "titleCancel": "Exit fullscreen",
+  "forceSeparateButton": true,
+}
+            ).addTo(map_ba40ff7d3bc0e0d1a410a25ec81244b5);
+        
+    
+            var mouse_position_4b4d7e0782b25ff9493800e658a9a830 = new L.Control.MousePosition(
+                {
+  "position": "bottomright",
+  "separator": " | ",
+  "emptyString": "Hover over map",
+  "lngFirst": false,
+  "numDigits": 5,
+  "prefix": "\ud83d\udccd",
+}
+            );
+            mouse_position_4b4d7e0782b25ff9493800e658a9a830.options["latFormatter"] =
+                undefined;
+            mouse_position_4b4d7e0782b25ff9493800e658a9a830.options["lngFormatter"] =
+                undefined;
+            map_ba40ff7d3bc0e0d1a410a25ec81244b5.addControl(mouse_position_4b4d7e0782b25ff9493800e658a9a830);
+        
+    
+            var measure_control_4f1594ab456655a48b562434f04fd9fc = new L.Control.Measure(
+                {
+  "position": "topleft",
+  "primaryLengthUnit": "kilometers",
+  "secondaryLengthUnit": "meters",
+  "primaryAreaUnit": "sqkilometers",
+  "secondaryAreaUnit": "acres",
+});
+            map_ba40ff7d3bc0e0d1a410a25ec81244b5.addControl(measure_control_4f1594ab456655a48b562434f04fd9fc);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+            var layer_control_523e76c1ca71085f8b46002291f9426d_layers = {
+                base_layers : {
+                    "Google Hybrid" : tile_layer_b05317631fb844168fca7ff0ae9a0f7f,
+                    "ESRI World Imagery" : tile_layer_5906d5a7305256b8dd60a55637eb7091,
+                    "Google Satellite" : tile_layer_cad17ba1c7d8d3c315c3a623eafa1492,
+                    "OpenStreetMap" : tile_layer_d149125fdcb7cb49283cb8c37abd5885,
+                    "Google Roadmap" : tile_layer_a6f261ba5ad6ab6feb17a0cf4bc58c58,
+                },
+                overlays :  {
+                    "\ud83c\udf0a Flood Depth" : image_overlay_20c5fe4126143e387bd8fc3c6c9bbb62,
+                    "\u26a0\ufe0f Risk Class (NDMA)" : image_overlay_75daa03c22f3efba45d5e8acc175a640,
+                },
+            };
+            let layer_control_523e76c1ca71085f8b46002291f9426d = L.control.layers(
+                layer_control_523e76c1ca71085f8b46002291f9426d_layers.base_layers,
+                layer_control_523e76c1ca71085f8b46002291f9426d_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_ba40ff7d3bc0e0d1a410a25ec81244b5);
+
+        
+</script>
+</html>

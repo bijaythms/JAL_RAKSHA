@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_3ebf61e680da6c7f38c91cf6c3823037 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+            
+                <style>
+                    .leaflet-image-layer {
+                        /* old android/safari*/
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges; /* safari */
+                        image-rendering: pixelated; /* chrome */
+                        image-rendering: -moz-crisp-edges; /* firefox */
+                        image-rendering: -o-crisp-edges; /* opera */
+                        -ms-interpolation-mode: nearest-neighbor; /* ie */
+                    }
+                </style>
+            
+        
+    
+            
+                <style>
+                    .leaflet-image-layer {
+                        /* old android/safari*/
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges; /* safari */
+                        image-rendering: pixelated; /* chrome */
+                        image-rendering: -moz-crisp-edges; /* firefox */
+                        image-rendering: -o-crisp-edges; /* opera */
+                        -ms-interpolation-mode: nearest-neighbor; /* ie */
+                    }
+                </style>
+            
+        
+    
+            
+                <style>
+                    .leaflet-image-layer {
+                        /* old android/safari*/
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges; /* safari */
+                        image-rendering: pixelated; /* chrome */
+                        image-rendering: -moz-crisp-edges; /* firefox */
+                        image-rendering: -o-crisp-edges; /* opera */
+                        -ms-interpolation-mode: nearest-neighbor; /* ie */
+                    }
+                </style>
+            
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+    <div id="flood-title" style="
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        background: rgba(5, 10, 35, 0.88);
+        color: #e0eaff;
+        padding: 9px 22px 9px 14px;
+        border-radius: 10px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        border: 1.5px solid #3366cc;
+        box-shadow: 0 2px 12px rgba(0,80,255,0.25);
+        white-space: nowrap;
+        pointer-events: none;
+    ">
+        🌊 FastFlood 2D Dam-Break: Rishiganga Valley Landslide Dam (DEMO)
+    </div>
+    
+    <div id="flood-legend" style="
+        position: fixed;
+        bottom: 28px;
+        left: 12px;
+        z-index: 9998;
+        background: rgba(5, 10, 40, 0.92);
+        color: #c8d8ff;
+        padding: 13px 15px;
+        border-radius: 10px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        border: 1.5px solid #2244aa;
+        box-shadow: 0 4px 20px rgba(0,40,200,0.3);
+        min-width: 200px;
+        max-width: 220px;
+    ">
+        <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:#aaccff;">
+            🌊 Flood Depth
+        </div>
+        
+    <div style="height:12px; width:100%; border-radius:3px; margin:4px 0 10px 0;
+         background: linear-gradient(to right,
+             rgba(173,216,230,0.3),
+             rgba(100,149,237,0.7),
+             rgba(0,0,139,0.95));
+    "></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:#aac;margin-bottom:8px;">
+        <span>0 m</span><span>Flood Depth</span><span>Deep →</span>
+    </div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:6px;color:#aaccff;">
+            ⚠️ Risk (NDMA India)
+        </div>
+        
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(255,255,51,0.71);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">Low (< 30 cm)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(255,153,0,0.82);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">Medium (30–100 cm)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(220,20,60,0.90);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">High (1–2 m)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(128,0,128,0.96);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">Extreme (> 2 m)</span>
+        </div>
+        
+        
+        <hr style="border:none;border-top:1px solid #334;margin:8px 0;">
+        <div style="font-size:11px;color:#adc;line-height:1.7;">
+            <span style="color:#88aaff;font-weight:600;">📊 Results</span><br>
+            Flooded: <b style="color:#fff">0.00 km²</b>
+            <span style="color:#777">(0.0%)</span><br>
+            Max depth: <b style="color:#fff">0.00 m</b><br>
+            Mean depth: <b style="color:#fff">0.00 m</b>
+        </div>
+        <hr style="border:none;border-top:1px solid #334;margin:8px 0;">
+        <div style="font-size:9px;color:#557;text-align:center;">
+            India Flood Engine · van den Bout et al. 2026
+        </div>
+    </div>
+    
+    <style>
+        /* Override Folium default styles */
+        .leaflet-control-layers {
+            background: rgba(5,10,40,0.92) !important;
+            color: #c8d8ff !important;
+            border: 1.5px solid #2244aa !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 20px rgba(0,40,200,0.3) !important;
+        }
+        .leaflet-control-layers-list label {
+            color: #c8d8ff !important;
+        }
+        .leaflet-control-layers-separator {
+            border-top: 1px solid #334 !important;
+        }
+        .leaflet-bar a {
+            background: rgba(5,10,40,0.88) !important;
+            color: #c8d8ff !important;
+            border-color: #2244aa !important;
+        }
+        .leaflet-bar a:hover {
+            background: rgba(30,50,120,0.92) !important;
+        }
+        .leaflet-control-zoom-in,
+        .leaflet-control-zoom-out {
+            background: rgba(5,10,40,0.88) !important;
+            color: #c8d8ff !important;
+        }
+        .leaflet-control-scale-line {
+            background: rgba(5,10,40,0.75) !important;
+            color: #aad !important;
+            border-color: #446 !important;
+        }
+        /* Smooth overlay transitions */
+        .leaflet-image-layer {
+            transition: opacity 0.3s ease;
+        }
+    </style>
+    <script>
+        // Add keyboard shortcut: 'h' to toggle depth overlay
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'h' || e.key === 'H') {
+                var layers = document.querySelectorAll('.leaflet-image-layer');
+                layers.forEach(function(l) {
+                    l.style.opacity = (l.style.opacity === '0') ? '1' : '0';
+                });
+            }
+        });
+    </script>
+    
+            <div class="folium-map" id="map_3ebf61e680da6c7f38c91cf6c3823037" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_3ebf61e680da6c7f38c91cf6c3823037 = L.map(
+                "map_3ebf61e680da6c7f38c91cf6c3823037",
+                {
+                    center: [30.48865, 79.6757],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_3ebf61e680da6c7f38c91cf6c3823037);
+
+            
+
+        
+    
+            var tile_layer_eb3992c3e3ce726c9f7f349794595437 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u00a9 Google",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_eb3992c3e3ce726c9f7f349794595437.addTo(map_3ebf61e680da6c7f38c91cf6c3823037);
+        
+    
+            var tile_layer_b4eda5e04c2769dcd2e81df33525799e = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Tiles \u00a9 Esri \u2014 Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var tile_layer_3ffc5f154e43f30c80d3a790c2ed1749 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=s\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u00a9 Google",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var tile_layer_a5934e63fbbd502a2291626edb0a0dc9 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var tile_layer_bd711a3325d03c87fc004e92d371604e = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=m\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u00a9 Google",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var image_overlay_6c212ffda8f236d04801a9dd62f7af1a = L.imageOverlay(
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAYAAACLz2ctAAAHwElEQVR42u3bz28jZx3H8e/zY55nZux1nNiJY8fZNNllW4kiLhQEB8Sl4sQRIXHkiLjxP3HbK0ICqRyoVFRQtYC2q7LdH1lvomTrxB7b8cw8vziMvflRLmzLlpTPS5o840RjW857xvM4E3b3wQEBfFU4XgJAgIAAARAgIEAABAgIEAABAgIEQICAAAEQICBAAAQICBAAAQICBECAgAABECAgQAAECAgQAAECAgRAgIAAARAgIEAABAgIEAABAgIEBAiAAAEBAiBAQIAACBAQIAACBAQIgAABAQIgQECAAAgQECAAAgQECIAAAQECIEBAgAAIEBAgAAIEBAiAAAEBAiBAQIAACBAQIAACBAQICBAAAQICvB5mM/ujovA/wK/v+pPX7Qnfu5f98vCw2BGCWaXYu1HEiyhihVK8VIoXjFEIgYiIWDUGRkTkHAnngnQuVKMPwrsgGWOec/KcM8f5+fry8UIgRhQWIzEpmVGK50rxQileaM1ypXiuNZ/HsXgfSX2NAzw6Kn5y//70O/v781tCMCcks1IwIyUzMuImksxcDqcKMAQi70l4H4TzgXtXrXsfODFGnJFnjDznzDNGgXPmF/exCDlUIxGTglkpWRlFvIwiZhZjsQjyx0qxXGuea83zOBazlRV50mxGJ1pzxHndAxwOTefoqNgaDPImMSLOGHFOxDkjIar1lwG+/FKFFEIg74l8CBQ8kQ9EwS8KY0SMsQvr59tdGomIcyIhqseT1RikZFZKZqKIlVLyMopYqRQvtebzel1k9boc37ghf9hoyNOVFXnS7er9KOIfIL9rFiDn1dGJc0bOBzLOk/dVSFVkV+MLn4voapzVzxbbX4n20vYXt2FUvR9zRpwR45xFnFPEOUuXcQrBKFKMkphTkoizNBXTWk1MajWRdTr6+dZW/Pb2dvywXpd/RIDXxPq6Ouh29VNrg7TWK2tDtFiktYE7dzGk8Lnwlke65VGOMUZ+Ea/3l4+Q4cr2ywCdC+eLJ/IukDHVjrC8rws7DEnJKIp4qhRPteYbccxpbS3f29+f33r8WL/V68Xf3N6OP2211O/+HwNkdx8cXKsn/ODB9BeHh8VOWXpdLUEb43VZBmWMV8vJwiJCtjwfZIwFzi+c63HynDHvfeDek1hMSsRyncL5JObluSARWROUMT4yNihrgjLWS2sCWRvImEDWerIukFvcNsaTc1XcVZCc0lTQyoqk1dVovr6uDjsd/WxrSz/Z3U0ftNvqtwjwf5xz4btF4eOi8MmVMb40abgQDl+EV812yXPBnODknSfuXJB+OTt2QTpHIlTxssszamLL8IvCx2UZdFn6uDRel4XXZRni8x3D6zz36dnc8XzuKS88lYWnovRkTSApGaWpoEZD0upqZNc31MFWL368sxM/3N1NP242o98jQPi3vA/v5LlPisIn1ejiPPfp4na6/N506lYmE7synbqV2cw1ZjNbzyZWZmNLs5kjYwJxTpQk1RGx1VJmc1MPtrb0452d5J97e+nH9bp8DwHCf8xa/73RyLZGI9Maj+1altm1LLPNFy/K3vFx0RuemPp4ZGk6s2TKQIwRpamgZlNSu62KzU39rN+PHy1CvJ8k4k8IEL6Q0ci8Oxjke4NBvnd4WNw8Pi62hkOzcnpqKMssWVuFWKsJaq5GtN5W825X7/f78aOdN5JPbu2l979uH9+In/3q1yjjNYlj8WhjQ/+114vLRkOO6nWZJYkotOZaShaHQFSWnooi0GRiaTq10WRi2+Ox7Y5Gtn16ata9D/21NXUPAcIriyL+tN1WH21vx2eNhhylqZjqWDgVsVQIprwPVJbVkmWWplOnJhO7XoVo2icn5ttE1F1djf6BAOHVX3zBBmtr6m/b2/G8VhPTJBEzrXmIIl4XgsnlRztF4Zch6iyznXFmO+ORaY9G9lveh36jIRPO2XMECK8cYrutPup2Y5OmYpok4kxpzqKINxgnZqwna+k8xIlNssx1x2OzMRyazosXZbco3K00FQ2l+BMECK9EKf6009F/2djQoZaKWZKIM624jCS/QURkTCDniPLcU5YZmkxcOh6bzdNT0xsObWc0tmu9XlxGEX+KAOGVJYn4tNeLP2i1IpGmYhrHIteaKylZLYTqLdn7KsTR2NIks2o8Nq2i8Gs3bshxtxv/GQHCF1aryU/6/eT9ZjNSaSpmccyN0jyWksfeVZMUIqKyDDSZOBKCpZub+uj27dofCBcjwJel34/v9vsx9ftnP3/0+OytZ/v57efP8zeGQ1MbjQxNJra6KiiEC9dBIkD4ku3upr+5eTN55+HD2dtPnszvHB4WO8fHxdZnn5nmdGqp09GTVis6QoDw35wxf/jmm/UPd3fT7+/vz78xGOR7BwfFTpbZZq+nn965U/s74U9x8Do9ezb/aZbZ1U5HD67b5VwIEAj/lgkIEAABAgIEQICAAAEQICBAAAQICBAAAQICBECAgAABECAgQAAECAgQAAECAgRAgIAAARAgIEAABAgIEAABAgIEQICAAAEQICBAQIAACBAQIAACBAQIgAABAQIgQECAAAgQECAAAgQECIAAAQECIEBAgAAIEBAgAAIEBAiAAAEBAiBAQIAACBAQIAACBAQIgAABAQIgQECAgAABECAgQIDX61+d190EzZW4bwAAAABJRU5ErkJggg==",
+                [[30.422800000000002, 79.57], [30.554499999999997, 79.7814]],
+                {
+  "opacity": 1.0,
+  "interactive": false,
+  "zindex": 400,
+}
+            );
+        
+    
+            image_overlay_6c212ffda8f236d04801a9dd62f7af1a.addTo(map_3ebf61e680da6c7f38c91cf6c3823037);
+        
+    
+            var image_overlay_18e4b842d3fdb4518a1aa9988eb70af3 = L.imageOverlay(
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAYAAACLz2ctAAACTElEQVR42u3br1bCUADA4TuPxWSZxWBZN4jRaPQRyLwEmZcg+whEmkY10ClUKCTjDIj8OSjDg253+760xj3w2727F0jyPA9QlhNvAQJEgCBABAgCRIAgQAQIAkSAIEAECAJEgCBABAgCRIAgQAQIAkSAIEAECAJEgCBABAgCRIAgQASIAEGACBAEiABBgAgQBIgAQYAIEASIAEGACBAEiABBgAgQBIgAQYAIEASIAEGACBAEiABBgAgQBIgAESAIEAHG4nbgo6uHJM/zuEbcT0bj7l0aQghZ73lWiTF1WpPFxcuDpOoc4Fp8VbXzpui0JuLc7TTGQT/O7s+rNJ52Opwvr3feIN2QZr1ktAoyv5ZexDNg1QI8JNCNmdLMGNsz4O1gfHF2E8OsWDTIpocY9SYk9scBIcYY4PZRTP/16r9f+ZAboEigTQ4x4gCrfQN8F+lPQTYxRAH+daRrga5HKUQBlhbk70Os3/GNAIUowEbb2tUXCfHr25YahChAIQqQYy3N8W1WBBhBiPvOEjdCnL6/xRShACu+LIewOr4pEmJsmxQB1izEdjqcZ9Ony+DnWBzN54yWhcVGZbnkxvarIDNgzXfMlmBKXZptQig1RMcwEPwvGAGCABEgCBABggARIAgQAYIAESACBAEiQBAgAgQBIkAQIAIEASJAECACBAEiQBAgAgQBIkAQIAIEASJAECACBAEiQBAgAgQBIkAQIAJEgCBABAgCRIAgQAQIAkSAIEAECAJEgCBABAgCRIAgQAQIAkSAIEAECPt8AEbnHV59dlB4AAAAAElFTkSuQmCC",
+                [[30.422800000000002, 79.57], [30.554499999999997, 79.7814]],
+                {
+  "opacity": 0.85,
+  "interactive": false,
+  "zindex": 401,
+}
+            );
+        
+    
+            var image_overlay_601f716559f6616d1c4c58b3d6da93b1 = L.imageOverlay(
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAYAAACLz2ctAAAG50lEQVR42u3bT2wcVwHH8e97b/7sru3YcfwncRIHXIeQUicVAiSqXiqEEBKH9swRxJEzJ44cOHAELpzgVrhAUaWKotADKiJqVZqqVUjUJCVp0vzxn92d3Z0/73GYWce2EiEStdTl95FGb/ews6vd77x9M2ub188j8j9j9RaIAhQFKKIARQGKKEBRgCIKUBSgiAIUBSiiAEUBiihAUYAiClAUoIgCFAUoogBFAYooQFGAIgpQFKCIAhQFKKIARQGKKEBRgCIKUBSgKEARBSgKUEQBigIUUYCiAEUUoChAEQUoClBEAYoCFFGAogBFFKAoQBEFKApQRAGKAhRRgKIARRSgKEARBSgKUEQBigIUUYCiAEUUoChAUYAiClAU4P7Qep/vxrd4QR/f/hfttxe88CI/a33A8RBRhoTnfULhE0Y+JfcpIwyBAIAxzUgAU+FMSWQqnKmIKHGmwmEIwVFh8cHig8NjqbafMGDG+wBMiCl8ytC3GPk2g6pDVnXIymm28iP8Vkl9hgOcOs8Pp/7BWvovjuGowniLKLc3wHA/vHFExmPx2L0jhoAhhGbE4kPzSHM/wO39bT9fTOHjegwxhU/IfcrzPmXkU0a+zbDq0C8WuD08xvX8ML9Tbvs8wNZ1luKPWEhvEgNxsHUlwdaLibB3QRG2YwTf3A97bjel3S9ux9jsY9c4fh4HYffmmzDLEFH6mCKkjMpJ+tUk3XKab5czbORz3O1/iXeKOX6v/PZZgME2M5QFU4EpwTQxjTezN5y9tx9w34SHxMZD9rkz2PEBYLDBkuBIgm2ijMCn4Fv4ZkbMqgn6U29xZniCZ3prXBis8BsFuE8MT3A1P8zN7fVcvVlTNUFW/yG8HTNcaOIh3I94O2a/J8wd+zIeqJrR16MtHzCr1gfMOEQbIjo+oRNS5oobLLWucbzzT04Ol/lK/4u81zvDL/8fAzSvn99fL3juD/ykdY1lm5OYnMTmxLYgMTmxKYh3nHzsXgeO13mWgMGHZtyzLnSmataG45OX3etATElkCuImfmPKZiauHjDuuE2zOA0OfBvKSSinCcUs9/JFbg2X+aC3xoXeWX6hAD/lXJdvxfeYdV2mXJ8Jl9GxA9puQGs7lh2jqWcjHyy+OXnxwVEFS2X8rtnUmaoex483e/ZnR6R2RGpyEjsisTmJKZrbzYFgi/pgsEOcHYIdgc3BFGDyOsjgwLegmoByGopDbIyWuDFY4Ur3LG9lp/mVApQHshnfjO9wKOpywPWYcH06LmPCZbTtoNlGpFGXyZ0HictIXB9cF+yw/uoOpglxEooZKOa5NzzK9cETvN/9Mm8OVvi1ApT/fnG9zndaV1lObrGY3GU22mAm2mQ6uc1cfJdD0Tou6oHNmhCpv5qrKSgOQr7A7dFRbmSrXN76Kn8fHeVFBSiPpfMu35t8l9OtKyynH3IkvsNcvE4cbYHtg62aGbEN5RQUs4R8gY9Gx7ieneTSxjP8tZzlpc/Se+K+/wOF8Ukp5nmzf5pXhsdwPmXkWwx9SggxLRyOALaoN5dB1MdEPSajTRaSu8y1r3AiXufMYJVzClAeWTXNhewUr2YnyUNCERKKEGODYwKHMVV9wmILcH1wGdb1mIo2WEzuMNe5yDfcFk8NV3hNAcoj820uDlY5l62SYwkhoQgRUYiYwNbXG23ZhNirQ4y6HIjrEOc7l3gu2mStmKMTUi4pQHm0EDtczE7x6ugIcYioQkIZImIcbUx9LdFW9aUc1wfXx0VbTEcbLKS3WOxcZjW9ydd8ymJ5kLcVoDyScoa3+0/ySjHLZIgpQ4IPESmOlFDPhsY3IfYg6hFFm0zH9zic3GY+/ZCl0RJROcMFBSiPc7LyRm+Nl6sOc836MISINo6Y0FzQDk2IXYh62GiLCTfkoI+p+mu8rADlseVL/K33NC+FmKWQUPgYEyLaweKMb0KknhldBhiiYp7u5tf3zzXDSB/zp9/Gs/x041mY/RM/7rzHqfY1jic3ORyvY123XheasP2HFFZrQPlYDFb4S/9J+oAJKXnVhpCShhjnIygWKftP8U7vLH9UgPKxCAmXsy/w5+wJypAy8h0y36YqD1ANP8/V9ec4V8zzBvopTj4pM6/xo/ges4PPcaX3ND9HvwWLoP8LFgUoogBFAYooQFGAIgpQFKCIAhQFKApQRAGKAhRRgKIARRSgKEARBSgKUEQBigIUUYCiAEUUoChAEQUoClBEAYoCFFGAogBFFKAoQBEFKApQRAGKAhRRgKIARRSgKEARBSgKUBSgiAIUBSiiAEUBiihAUYAiClAUoIgCFAUoogBFAYooQFGAIgpQFKCIAhQFKKIARQGKKEBRgCIKUBSgyEP8G8u0p8Vztzj3AAAAAElFTkSuQmCC",
+                [[30.422800000000002, 79.57], [30.554499999999997, 79.7814]],
+                {
+  "opacity": 0.8,
+  "interactive": false,
+  "zindex": 402,
+}
+            );
+        
+    
+            var rectangle_53df8f7759298122fd28dba2c195c79f = L.rectangle(
+                [[30.422800000000002, 79.57], [30.554499999999997, 79.7814]],
+                {"bubblingMouseEvents": true, "color": "#4488ff", "dashArray": "6 4", "dashOffset": null, "fill": false, "fillColor": "#4488ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_3ebf61e680da6c7f38c91cf6c3823037);
+        
+    
+            rectangle_53df8f7759298122fd28dba2c195c79f.bindTooltip(
+                `<div>
+                     Simulation domain | Flooded: 2.2%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Enter fullscreen",
+  "titleCancel": "Exit fullscreen",
+  "forceSeparateButton": true,
+}
+            ).addTo(map_3ebf61e680da6c7f38c91cf6c3823037);
+        
+    
+            var mouse_position_eaf937e59b73c61f666e45d09a711ad0 = new L.Control.MousePosition(
+                {
+  "position": "bottomright",
+  "separator": " | ",
+  "emptyString": "Hover over map",
+  "lngFirst": false,
+  "numDigits": 5,
+  "prefix": "\ud83d\udccd",
+}
+            );
+            mouse_position_eaf937e59b73c61f666e45d09a711ad0.options["latFormatter"] =
+                undefined;
+            mouse_position_eaf937e59b73c61f666e45d09a711ad0.options["lngFormatter"] =
+                undefined;
+            map_3ebf61e680da6c7f38c91cf6c3823037.addControl(mouse_position_eaf937e59b73c61f666e45d09a711ad0);
+        
+    
+            var measure_control_6cc7be242bfb3590d5b07d51ae32f08e = new L.Control.Measure(
+                {
+  "position": "topleft",
+  "primaryLengthUnit": "kilometers",
+  "secondaryLengthUnit": "meters",
+  "primaryAreaUnit": "sqkilometers",
+  "secondaryAreaUnit": "acres",
+});
+            map_3ebf61e680da6c7f38c91cf6c3823037.addControl(measure_control_6cc7be242bfb3590d5b07d51ae32f08e);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+            var layer_control_e060c1162533b6b47eb4688420525943_layers = {
+                base_layers : {
+                    "Google Hybrid" : tile_layer_eb3992c3e3ce726c9f7f349794595437,
+                    "ESRI World Imagery" : tile_layer_b4eda5e04c2769dcd2e81df33525799e,
+                    "Google Satellite" : tile_layer_3ffc5f154e43f30c80d3a790c2ed1749,
+                    "OpenStreetMap" : tile_layer_a5934e63fbbd502a2291626edb0a0dc9,
+                    "Google Roadmap" : tile_layer_bd711a3325d03c87fc004e92d371604e,
+                },
+                overlays :  {
+                    "\ud83c\udf0a Flood Depth" : image_overlay_6c212ffda8f236d04801a9dd62f7af1a,
+                    "\u26a0\ufe0f Risk Class (NDMA)" : image_overlay_18e4b842d3fdb4518a1aa9988eb70af3,
+                    "\ud83d\udca8 Flow Velocity" : image_overlay_601f716559f6616d1c4c58b3d6da93b1,
+                },
+            };
+            let layer_control_e060c1162533b6b47eb4688420525943 = L.control.layers(
+                layer_control_e060c1162533b6b47eb4688420525943_layers.base_layers,
+                layer_control_e060c1162533b6b47eb4688420525943_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_3ebf61e680da6c7f38c91cf6c3823037);
+
+        
+</script>
+</html>

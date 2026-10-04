@@ -1,0 +1,35 @@
+{
+  "DAM-UKAI": "Not found",
+  "DAM-UJJANI": "Not found",
+  "DAM-TAWA": "Not found",
+  "DAM-BISALPUR": "Not found",
+  "DAM-INDRAVATI": {
+    "lat": 19.42719,
+    "lon": 82.85964,
+    "name": "Indravati Dam, Thuamul Rampur, Kalahandi, Odisha, India"
+  },
+  "DAM-NAGARJUNA-SAGAR": "Not found",
+  "DAM-ALMATTI": "Not found",
+  "DAM-KRS": "Not found",
+  "DAM-BHAVANISAGAR": "Not found",
+  "DAM-MAITHON": "Not found",
+  "DAM-SOUTH-LHONAK": {
+    "lat": 27.90312,
+    "lon": 88.15968,
+    "name": "South Lhonak Glacier, Chungthang, Mangan, Sikkim, India"
+  },
+  "DAM-SUBANSIRI": {
+    "lat": 27.5514,
+    "lon": 94.25922,
+    "name": "Subansiri Lower Dam, Subansiri (Pt II), Dhemaji, Assam, India"
+  },
+  "DAM-HASDEO-BANGO": "Not found",
+  "DAM-GANGREL": "Not found",
+  "DAM-PAREECHU": "Not found",
+  "DAM-TEESTA-V": {
+    "lat": 27.2421,
+    "lon": 88.4776,
+    "name": "TEESTA -V, Singtam, Gangtok subdivision, Gangtok, Sikkim, India"
+  },
+  "DAM-GANDHI-SAGAR": "Not found"
+}

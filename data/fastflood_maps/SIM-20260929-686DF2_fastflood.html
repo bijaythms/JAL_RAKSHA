@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5e324a3204cd18442a277a6838e42985 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+            
+                <style>
+                    .leaflet-image-layer {
+                        /* old android/safari*/
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges; /* safari */
+                        image-rendering: pixelated; /* chrome */
+                        image-rendering: -moz-crisp-edges; /* firefox */
+                        image-rendering: -o-crisp-edges; /* opera */
+                        -ms-interpolation-mode: nearest-neighbor; /* ie */
+                    }
+                </style>
+            
+        
+    
+            
+                <style>
+                    .leaflet-image-layer {
+                        /* old android/safari*/
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges; /* safari */
+                        image-rendering: pixelated; /* chrome */
+                        image-rendering: -moz-crisp-edges; /* firefox */
+                        image-rendering: -o-crisp-edges; /* opera */
+                        -ms-interpolation-mode: nearest-neighbor; /* ie */
+                    }
+                </style>
+            
+        
+    
+            
+                <style>
+                    .leaflet-image-layer {
+                        /* old android/safari*/
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges; /* safari */
+                        image-rendering: pixelated; /* chrome */
+                        image-rendering: -moz-crisp-edges; /* firefox */
+                        image-rendering: -o-crisp-edges; /* opera */
+                        -ms-interpolation-mode: nearest-neighbor; /* ie */
+                    }
+                </style>
+            
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+    <div id="flood-title" style="
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        background: rgba(5, 10, 35, 0.88);
+        color: #e0eaff;
+        padding: 9px 22px 9px 14px;
+        border-radius: 10px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        border: 1.5px solid #3366cc;
+        box-shadow: 0 2px 12px rgba(0,80,255,0.25);
+        white-space: nowrap;
+        pointer-events: none;
+    ">
+        🌊 FastFlood 2D Dam-Break: Rishiganga Valley Landslide Dam (DEMO)
+    </div>
+    
+    <div id="flood-legend" style="
+        position: fixed;
+        bottom: 28px;
+        left: 12px;
+        z-index: 9998;
+        background: rgba(5, 10, 40, 0.92);
+        color: #c8d8ff;
+        padding: 13px 15px;
+        border-radius: 10px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        border: 1.5px solid #2244aa;
+        box-shadow: 0 4px 20px rgba(0,40,200,0.3);
+        min-width: 200px;
+        max-width: 220px;
+    ">
+        <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:#aaccff;">
+            🌊 Flood Depth
+        </div>
+        
+    <div style="height:12px; width:100%; border-radius:3px; margin:4px 0 10px 0;
+         background: linear-gradient(to right,
+             rgba(173,216,230,0.3),
+             rgba(100,149,237,0.7),
+             rgba(0,0,139,0.95));
+    "></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:#aac;margin-bottom:8px;">
+        <span>0 m</span><span>Flood Depth</span><span>Deep →</span>
+    </div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:6px;color:#aaccff;">
+            ⚠️ Risk (NDMA India)
+        </div>
+        
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(255,255,51,0.71);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">Low (< 30 cm)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(255,153,0,0.82);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">Medium (30–100 cm)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(220,20,60,0.90);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">High (1–2 m)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;margin:3px 0;">
+            <div style="width:14px;height:14px;border-radius:3px;flex-shrink:0;
+                 background:rgba(128,0,128,0.96);border:1px solid rgba(255,255,255,0.2);"></div>
+            <span style="font-size:11px;color:#cce;">Extreme (> 2 m)</span>
+        </div>
+        
+        
+        <hr style="border:none;border-top:1px solid #334;margin:8px 0;">
+        <div style="font-size:11px;color:#adc;line-height:1.7;">
+            <span style="color:#88aaff;font-weight:600;">📊 Results</span><br>
+            Flooded: <b style="color:#fff">0.00 km²</b>
+            <span style="color:#777">(0.0%)</span><br>
+            Max depth: <b style="color:#fff">0.00 m</b><br>
+            Mean depth: <b style="color:#fff">0.00 m</b>
+        </div>
+        <hr style="border:none;border-top:1px solid #334;margin:8px 0;">
+        <div style="font-size:9px;color:#557;text-align:center;">
+            India Flood Engine · van den Bout et al. 2026
+        </div>
+    </div>
+    
+    <style>
+        /* Override Folium default styles */
+        .leaflet-control-layers {
+            background: rgba(5,10,40,0.92) !important;
+            color: #c8d8ff !important;
+            border: 1.5px solid #2244aa !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 20px rgba(0,40,200,0.3) !important;
+        }
+        .leaflet-control-layers-list label {
+            color: #c8d8ff !important;
+        }
+        .leaflet-control-layers-separator {
+            border-top: 1px solid #334 !important;
+        }
+        .leaflet-bar a {
+            background: rgba(5,10,40,0.88) !important;
+            color: #c8d8ff !important;
+            border-color: #2244aa !important;
+        }
+        .leaflet-bar a:hover {
+            background: rgba(30,50,120,0.92) !important;
+        }
+        .leaflet-control-zoom-in,
+        .leaflet-control-zoom-out {
+            background: rgba(5,10,40,0.88) !important;
+            color: #c8d8ff !important;
+        }
+        .leaflet-control-scale-line {
+            background: rgba(5,10,40,0.75) !important;
+            color: #aad !important;
+            border-color: #446 !important;
+        }
+        /* Smooth overlay transitions */
+        .leaflet-image-layer {
+            transition: opacity 0.3s ease;
+        }
+    </style>
+    <script>
+        // Add keyboard shortcut: 'h' to toggle depth overlay
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'h' || e.key === 'H') {
+                var layers = document.querySelectorAll('.leaflet-image-layer');
+                layers.forEach(function(l) {
+                    l.style.opacity = (l.style.opacity === '0') ? '1' : '0';
+                });
+            }
+        });
+    </script>
+    
+            <div class="folium-map" id="map_5e324a3204cd18442a277a6838e42985" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_5e324a3204cd18442a277a6838e42985 = L.map(
+                "map_5e324a3204cd18442a277a6838e42985",
+                {
+                    center: [30.512695, 79.651145],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_5e324a3204cd18442a277a6838e42985);
+
+            
+
+        
+    
+            var tile_layer_b3224e1a1b6a0807277bbb6986c07e29 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u00a9 Google",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b3224e1a1b6a0807277bbb6986c07e29.addTo(map_5e324a3204cd18442a277a6838e42985);
+        
+    
+            var tile_layer_42e3b60ff6c22c9a1eb4f79d4536008b = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Tiles \u00a9 Esri \u2014 Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var tile_layer_3a05e9b0f7ec359221c3534193d8f4d3 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=s\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u00a9 Google",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var tile_layer_3bf68583904449fbd32a3c329e78bf83 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var tile_layer_e8759d81138bc3a91aaae4a66eff55d1 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=m\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u00a9 Google",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var image_overlay_a4fb13a4c5d16ba9a1f34ace30716205 = L.imageOverlay(
+                "data:image/png;base64,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",
+                [[30.4235, 79.52078999999999], [30.601889999999997, 79.78150000000001]],
+                {
+  "opacity": 1.0,
+  "interactive": false,
+  "zindex": 400,
+}
+            );
+        
+    
+            image_overlay_a4fb13a4c5d16ba9a1f34ace30716205.addTo(map_5e324a3204cd18442a277a6838e42985);
+        
+    
+            var image_overlay_a8422de11b7914fdd9383f9f6200028f = L.imageOverlay(
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAYAAACLz2ctAAACI0lEQVR42u3bLZLCQBRG0Q4WgQGDZR1xLIO9UNkLy8CxDiwGDCK6UVQhoBD8dCfvXDc1bnLqSxoyTc45SaWa+BMIQAEoASgAJQAFoASgAJQAFIASgAJQAlAASgAKQAlAASgBKAAlAAWgBKAAlAAUgBKAAlACUABKAApAASgBKAAlAAWgBKAAlAAUgBKAAlACUABKAApACUABKI0H4HHRno6L9uTSxKjJOVeFb3dZz+4/b/N26hJZwL/1iC+llLqm660hgMVRdk3Xu1QA/rzNfH999TsIPQMWeQ58hnR1PixdOgB/2rvFc0AB0Bpq3ACtoUNIFb0D5oBiAau4JVtDAKu4JXs2BLA4QhABrOKWDCKAVawhiABWA9FhBcDit2UQAQRR4wUIIoAgCkCHFQBBFIDfgAghgCACCCKEAHoRFkAIQQTQGiav5IfIvwVYQLdkAOWWDKA1BFDWEEBrCKB8lQcgiADq088Fo2IEEEQAQYwLEUAQAQQxLkQAQQRQcT++ARBEABX36z0AQUzeiNbHuIb6RrYFtIYWUHHX0AJ6ERZAxb0lA2gNAVTcNXQIcUABUN9F6GMYDWINAVT4NQQw2BrWBtIpWBZQAEoACkAJQAEoASgAJQAFoASgAJQAFIASgAJQAlAASgAKQAlAASgBKAAlAAWgBKAAlAAUgBKAAlAASgAKQAlAASgBKAAlAAWgBKAAlAAUgBKAAlACUABKAGqg3QCycZPW8IEl3AAAAABJRU5ErkJggg==",
+                [[30.4235, 79.52078999999999], [30.601889999999997, 79.78150000000001]],
+                {
+  "opacity": 0.85,
+  "interactive": false,
+  "zindex": 401,
+}
+            );
+        
+    
+            var image_overlay_bcf576fe860afe43962a6084c7cfaae6 = L.imageOverlay(
+                "data:image/png;base64,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",
+                [[30.4235, 79.52078999999999], [30.601889999999997, 79.78150000000001]],
+                {
+  "opacity": 0.8,
+  "interactive": false,
+  "zindex": 402,
+}
+            );
+        
+    
+            var rectangle_0bcb985a1bd2fbd7b134a319438d8197 = L.rectangle(
+                [[30.4235, 79.52078999999999], [30.601889999999997, 79.78150000000001]],
+                {"bubblingMouseEvents": true, "color": "#4488ff", "dashArray": "6 4", "dashOffset": null, "fill": false, "fillColor": "#4488ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_5e324a3204cd18442a277a6838e42985);
+        
+    
+            rectangle_0bcb985a1bd2fbd7b134a319438d8197.bindTooltip(
+                `<div>
+                     Simulation domain | Flooded: 2.0%
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Enter fullscreen",
+  "titleCancel": "Exit fullscreen",
+  "forceSeparateButton": true,
+}
+            ).addTo(map_5e324a3204cd18442a277a6838e42985);
+        
+    
+            var mouse_position_0b3d77d51ad05fa8c1fddc95b0213df2 = new L.Control.MousePosition(
+                {
+  "position": "bottomright",
+  "separator": " | ",
+  "emptyString": "Hover over map",
+  "lngFirst": false,
+  "numDigits": 5,
+  "prefix": "\ud83d\udccd",
+}
+            );
+            mouse_position_0b3d77d51ad05fa8c1fddc95b0213df2.options["latFormatter"] =
+                undefined;
+            mouse_position_0b3d77d51ad05fa8c1fddc95b0213df2.options["lngFormatter"] =
+                undefined;
+            map_5e324a3204cd18442a277a6838e42985.addControl(mouse_position_0b3d77d51ad05fa8c1fddc95b0213df2);
+        
+    
+            var measure_control_15a16fdacd5dcf52ce87967fed0d91ee = new L.Control.Measure(
+                {
+  "position": "topleft",
+  "primaryLengthUnit": "kilometers",
+  "secondaryLengthUnit": "meters",
+  "primaryAreaUnit": "sqkilometers",
+  "secondaryAreaUnit": "acres",
+});
+            map_5e324a3204cd18442a277a6838e42985.addControl(measure_control_15a16fdacd5dcf52ce87967fed0d91ee);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+            var layer_control_accf34b73dd3c6749cccffac1d8f12d7_layers = {
+                base_layers : {
+                    "Google Hybrid" : tile_layer_b3224e1a1b6a0807277bbb6986c07e29,
+                    "ESRI World Imagery" : tile_layer_42e3b60ff6c22c9a1eb4f79d4536008b,
+                    "Google Satellite" : tile_layer_3a05e9b0f7ec359221c3534193d8f4d3,
+                    "OpenStreetMap" : tile_layer_3bf68583904449fbd32a3c329e78bf83,
+                    "Google Roadmap" : tile_layer_e8759d81138bc3a91aaae4a66eff55d1,
+                },
+                overlays :  {
+                    "\ud83c\udf0a Flood Depth" : image_overlay_a4fb13a4c5d16ba9a1f34ace30716205,
+                    "\u26a0\ufe0f Risk Class (NDMA)" : image_overlay_a8422de11b7914fdd9383f9f6200028f,
+                    "\ud83d\udca8 Flow Velocity" : image_overlay_bcf576fe860afe43962a6084c7cfaae6,
+                },
+            };
+            let layer_control_accf34b73dd3c6749cccffac1d8f12d7 = L.control.layers(
+                layer_control_accf34b73dd3c6749cccffac1d8f12d7_layers.base_layers,
+                layer_control_accf34b73dd3c6749cccffac1d8f12d7_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_5e324a3204cd18442a277a6838e42985);
+
+        
+</script>
+</html>

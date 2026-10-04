@@ -1,0 +1,10 @@
+{
+  "regions": {
+    "western_himalaya": {
+      "building": 800000,
+      "crop_per_ha": 120000,
+      "livestock_per_head": 40000
+    }
+  },
+  "incidents": {}
+}

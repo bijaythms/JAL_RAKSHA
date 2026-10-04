@@ -1,0 +1,71 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables & secrets (NEVER commit credentials!)
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+
+# Retain example env file
+!.env.example
+
+# SQLite & local databases
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
+# Large GIS & Remote Sensing datasets (DEM GeoTIFFs, radar rasters)
+# Note: Copernicus GLO-30 DEM tiles are 40+ MB each and are dynamically downloaded / cached
+data/dem_cache/*.tif
+data/dem_cache/*.tiff
+*.tif
+*.tiff
+app/services/hackathon_engine/test_outputs/**/*.tif
+app/services/hackathon_engine/test_outputs/**/*.png
+!data/dem_cache/.gitkeep
+
+# User file uploads
+uploads/*
+!uploads/.gitkeep
+
+# Temporary, scratch & patch files
+scratch/
+patch.py
+patch2.py
+dir
+*.tmp
+*.log
+
+# OS & Editor artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

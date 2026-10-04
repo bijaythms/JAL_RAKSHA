@@ -1,0 +1,43 @@
+{
+  "simulation_time": "2026-09-18T22:32:31.154947",
+  "input": {
+    "rainfall_mm": 150.0,
+    "duration_hr": 12.0,
+    "intensity_mm_hr": 12.5
+  },
+  "domain": {
+    "total_cells": 2165222,
+    "total_area_km2": 1950.361
+  },
+  "flood_extent": {
+    "flooded_cells": 795401,
+    "flooded_area_km2": 716.471,
+    "flood_fraction_pct": 36.74
+  },
+  "depth_stats_m": {
+    "max": 10.107,
+    "mean_flooded": 6.378,
+    "p75_flooded": 7.427,
+    "p95_flooded": 9.078
+  },
+  "velocity_stats_m_per_s": {
+    "max": 6.0,
+    "mean_flooded": 0.343
+  },
+  "risk_classes": {
+    "counts": {
+      "dry": 1369825,
+      "low": 9,
+      "medium": 1502,
+      "high": 587,
+      "extreme": 793299
+    },
+    "areas_km2": {
+      "dry": 1233.894,
+      "low": 0.008,
+      "medium": 1.353,
+      "high": 0.529,
+      "extreme": 714.578
+    }
+  }
+}

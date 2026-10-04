@@ -1,0 +1,9 @@
+{
+  "JR-DEMO-0001": {
+    "Landslide debris": {
+      "k_d": 4.5e-06,
+      "tau_c": 2.5,
+      "source": "user-calibrated"
+    }
+  }
+}

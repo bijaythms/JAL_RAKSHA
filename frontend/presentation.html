@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jal Raksha · SIH 2026 Presentation</title>
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<style>
+  :root {
+    --navy: #1a365d;
+    --blue: #2563eb;
+    --cyan: #0284c7;
+    --orange: #ea580c;
+    --green: #166534;
+    --dark: #1e293b;
+    --muted: #64748b;
+    --bg-card: #f8fafc;
+    --border: #cbd5e1;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f172a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #1e293b;
+    padding: 8px 18px;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+    z-index: 100;
+  }
+  .controls button {
+    background: #334155;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .controls button:hover { background: var(--blue); }
+  .controls .btn-pptx { background: #b91c1c; }
+  .controls .btn-pptx:hover { background: #ef4444; }
+  .slide-counter { color: #94a3b8; font-size: 13px; font-weight: 600; min-width: 80px; text-align: center; }
+
+  /* 16:9 Slide Canvas */
+  .slide-viewport {
+    width: 1200px;
+    height: 675px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+    display: none;
+    padding: 30px 45px 35px;
+  }
+  .slide-viewport.active { display: block; }
+
+  /* Slide Shared Layouts */
+  .slide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .badge-vq {
+    border: 2px solid var(--blue);
+    border-radius: 20px;
+    padding: 4px 14px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 12px;
+    color: var(--navy);
+    line-height: 1.2;
+    background: #fff;
+  }
+  .slide-title {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--navy);
+    text-align: center;
+    flex: 1;
+    margin: 0 15px;
+  }
+  .slide-footer {
+    position: absolute;
+    bottom: 12px;
+    left: 45px;
+    right: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 11px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 8px;
+  }
+  .slide-num { font-weight: 800; color: var(--navy); font-size: 13px; }
+
+  /* Slide 1: Title */
+  .s1-container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+  }
+  .s1-left { flex: 1.4; padding-right: 20px; }
+  .s1-right { flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .s1-title {
+    font-family: Georgia, serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+    margin-bottom: 28px;
+  }
+  .s1-meta {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .s1-meta li {
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--dark);
+    display: flex;
+    align-items: flex-start;
+  }
+  .s1-meta li::before {
+    content: "•";
+    color: var(--navy);
+    font-size: 22px;
+    line-height: 1;
+    margin-right: 10px;
+  }
+  .s1-meta b { color: var(--navy); font-size: 17px; }
+
+  /* Slide 2: Core Idea */
+  .s2-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 20px;
+    height: calc(100% - 75px);
+  }
+  .card-issue {
+    background: #ffedd5;
+    border: 1.5px solid var(--orange);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12px;
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+  .card-issue b { color: var(--orange); font-size: 13px; }
+  .card-why {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+  }
+  .card-why h4 { color: var(--navy); font-size: 13.5px; margin-bottom: 8px; }
+  .card-why ul { list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 11px; }
+  .card-why li { display: flex; gap: 8px; line-height: 1.35; }
+  .card-sol {
+    background: #dcfce7;
+    border: 1.5px solid var(--green);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 11.5px;
+    line-height: 1.45;
+  }
+  .card-sol b { color: var(--green); font-size: 13px; }
+
+  .arch-box {
+    background: #0f172a;
+    border: 1.5px solid var(--blue);
+    border-radius: 10px;
+    padding: 18px 20px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .arch-box h3 {
+    color: #38bdf8;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  .arch-sec { margin-bottom: 10px; }
+  .arch-sec h5 { color: #fbbf24; font-size: 11px; margin-bottom: 3px; }
+  .arch-sec p { color: #cbd5e1; font-size: 10px; line-height: 1.4; }
+  .btn-demo-card {
+    background: #b91c1c;
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 6px;
+    cursor: pointer;
+  }
+
+  /* Slide 3: Technical Approach */
+  .s3-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 20px;
+    height: calc(100% - 75px);
+  }
+  .step-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--blue);
+  }
+  .step-card h4 { color: var(--navy); font-size: 12px; margin-bottom: 3px; }
+  .step-card p { font-size: 10px; color: var(--dark); line-height: 1.35; }
+  
+  .table-tech {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10.5px;
+  }
+  .table-tech th, .table-tech td {
+    border: 1px solid #e2e8f0;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .table-tech th {
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+  }
+  .table-tech td.cat {
+    background: #f1f5f9;
+    font-weight: 700;
+    color: var(--navy);
+    width: 32%;
+  }
+
+  /* Slide 4: Feasibility & Viability */
+  .s4-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    height: calc(100% - 75px);
+  }
+  .col-card {
+    border-radius: 8px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .col-feas { background: #fef3c7; border: 1.5px solid #d97706; }
+  .col-viab { background: #e0e7ff; border: 1.5px solid var(--blue); }
+  .col-biz  { background: #dcfce7; border: 1.5px solid var(--green); }
+  .col-card h3 { font-size: 13.5px; font-weight: 800; margin-bottom: 2px; }
+  .col-item { font-size: 10px; line-height: 1.4; color: var(--dark); }
+  .col-item b { color: var(--navy); display: block; margin-bottom: 1px; }
+
+  /* Slide 5: Impact & Benefits */
+  .s5-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 16px;
+    height: calc(100% - 75px);
+  }
+  .table-comp {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5px;
+  }
+  .table-comp th, .table-comp td {
+    border: 1px solid #e2e8f0;
+    padding: 6px 8px;
+  }
+  .table-comp th {
+    background: var(--navy);
+    color: #fff;
+    font-size: 10px;
+  }
+  .table-comp td.feat { font-weight: 700; background: #f8fafc; color: var(--navy); }
+  .table-comp td.val { color: var(--green); font-weight: 600; }
+
+  .hydro-card {
+    background: #0f172a;
+    border: 1.5px solid var(--cyan);
+    border-radius: 10px;
+    padding: 16px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .hydro-card h4 { color: #38bdf8; font-size: 12.5px; text-align: center; }
+  .kpi-row {
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    padding: 8px 12px;
+  }
+  .kpi-row .lbl { font-size: 9px; color: #94a3b8; text-transform: uppercase; }
+  .kpi-row .val { font-size: 16px; font-weight: 800; color: #fbbf24; }
+  .kpi-row .sub { font-size: 8.5px; color: #e2e8f0; }
+
+  /* Slide 6: References */
+  .s6-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .ref-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 10px 14px;
+    border-left: 4px solid var(--blue);
+  }
+  .ref-card h4 { color: var(--navy); font-size: 11.5px; margin-bottom: 3px; }
+  .ref-card p { font-size: 9.5px; color: var(--dark); line-height: 1.35; }
+  .ui-showcase-box {
+    background: #0f172a;
+    border: 1.5px solid var(--blue);
+    border-radius: 10px;
+    padding: 14px 18px;
+    color: #fff;
+  }
+  .ui-showcase-box h4 {
+    color: #38bdf8;
+    font-size: 12.5px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .ui-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    font-size: 9.5px;
+    color: #cbd5e1;
+    line-height: 1.45;
+  }
+  .ui-cols b { color: #fbbf24; display: block; font-size: 10.5px; margin-bottom: 2px; }
+
+  @media print {
+    body { background: transparent; padding: 0; }
+    .controls { display: none; }
+    .slide-viewport {
+      display: block !important;
+      page-break-after: always;
+      box-shadow: none;
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+      padding: 40px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="controls no-print">
+  <button id="btnPrev">◂ Previous</button>
+  <span class="slide-counter" id="slideCounter">Slide 1 / 6</span>
+  <button id="btnNext">Next ▸</button>
+  <button id="btnFullscreen">Fullscreen (F)</button>
+  <button onclick="window.print()">Print / PDF</button>
+  <a href="/Jal_Raksha_SIH2026_Presentation.pptx" download style="text-decoration:none">
+    <button class="btn-pptx">📥 Download .PPTX</button>
+  </a>
+</div>
+
+<!-- ════════ SLIDE 1: TITLE SLIDE ════════ -->
+<div class="slide-viewport active" id="slide-1">
+  <div style="display:flex;justify-content:flex-end;margin-bottom:10px">
+    <img src="/img/sih_logo.png" onerror="this.src='/img/logo_icon_dark.png'" style="height:48px" alt="SIH 2026">
+  </div>
+  <div class="s1-container">
+    <div class="s1-left">
+      <div class="s1-title">SMART INDIA HACKATHON 2026</div>
+      <ul class="s1-meta">
+        <li><div><b>Problem Statement ID –</b> SIH26161 (NTRO HADR Deliverable)</div></li>
+        <li><div><b>Problem Statement Title –</b> Dam Break Inundation Modelling Using Hydrodynamic Modelling of any River.</div></li>
+        <li><div><b>Theme –</b> Disaster Management & Space / Defense Technology</div></li>
+        <li><div><b>PS Category –</b> Software</div></li>
+        <li><div><b>Team ID –</b> 172200</div></li>
+        <li><div><b>Team Name –</b> VisionQuest1 (Creators of Jal Raksha)</div></li>
+      </ul>
+    </div>
+    <div class="s1-right">
+      <img src="/img/brain_logo.png" onerror="this.src='/img/logo_dark.png'" style="width:230px" alt="SIH Brain">
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>@SIH Idea submission- Template</span>
+    <span class="slide-num">1</span>
+  </div>
+</div>
+
+<!-- ════════ SLIDE 2: THE CORE IDEA ════════ -->
+<div class="slide-viewport" id="slide-2">
+  <div class="slide-header">
+    <div class="badge-vq">Vision<br>Quest1</div>
+    <div class="slide-title">Jal Raksha — from data to decision, from risk to resilience</div>
+    <img src="/img/sih_logo.png" onerror="this.src='/img/logo_icon_dark.png'" style="height:40px" alt="SIH 2026">
+  </div>
+  <div class="s2-grid">
+    <div>
+      <div class="card-issue">
+        <b>Real-World Issue:</b> Catastrophic flash floods from sudden dam breach & natural lake blockages (Rishi Ganga 2021, Phuktal 2015, South Lhonak 2023, Kosi 2008), lacking automated rapid HADR simulation.
+      </div>
+      <div class="card-why">
+        <h4>Why Important:</h4>
+        <ul>
+          <li><span>🌊</span><span>India houses 5,745+ large dams; hundreds exceed 50-year design lifespans near dense river valleys.</span></li>
+          <li><span>⏱️</span><span>Steep valley flash floods arrive in under 2 to 30 mins — every lost second costs lives.</span></li>
+          <li><span>🏔️</span><span>Glacial Lake Outbursts (GLOF) & landslide blockages strike Himalayan valleys with zero warning.</span></li>
+          <li><span>📉</span><span>Conventional tools (HEC-RAS, MIKE FLOOD) take days; commanders need sub-minute mapping.</span></li>
+        </ul>
+      </div>
+      <div class="card-sol">
+        <b>Solution:</b> Jal Raksha integrates Copernicus GLO-30 DEM, satellite radar (Sentinel-1 SAR), high-density river networks for 65+ Indian dams, dual hydrodynamic solvers (SPH + Delft3D SWE), and automated GEE ground-truth validation. Generates instant Shapefiles (.shp), Google Earth KMLs, and tactical evacuation plans in 15 seconds.
+      </div>
+    </div>
+    <div class="arch-box">
+      <h3>JAL RAKSHA PLATFORM ARCHITECTURE</h3>
+      <div class="arch-sec">
+        <h5>01 DUAL HYDRODYNAMIC SOLVERS</h5>
+        <p>• SPH (Lagrangian particles) for near-breach shockwave & velocity<br>• Delft3D (Eulerian SWE) for valley flood routing & diffusive backwater<br>• Geotechnical breach kinematics (Froehlich, MacDonald-Langridge)</p>
+      </div>
+      <div class="arch-sec">
+        <h5>02 BIG GEOSPATIAL DATA & GEE</h5>
+        <p>• 65+ preloaded Indian dams with 150-400 node river meanders<br>• Copernicus GLO-30 30m DEM + automated D8 flow direction<br>• Google Earth Engine Sentinel-1 SAR change detection (Δσ° &lt; -2.5 dB)</p>
+      </div>
+      <div class="arch-sec">
+        <h5>03 TACTICAL HADR DECISION SUPPORT</h5>
+        <p>• Instant ESRI Shapefile (.shp ZIP) & Google Earth 3D KML export<br>• Building-level exposure triage & economic damage assessment<br>• Plain-language emergency commander cards & arrival time contours</p>
+      </div>
+      <div class="btn-demo-card" onclick="window.open('/','_blank')">
+        PROTOTYPE → LIVE WEB PLATFORM (Click to Open)
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>@SIH Idea submission- Template</span>
+    <span class="slide-num">2</span>
+  </div>
+</div>
+
+<!-- ════════ SLIDE 3: TECHNICAL APPROACH ════════ -->
+<div class="slide-viewport" id="slide-3">
+  <div class="slide-header">
+    <div class="badge-vq">Vision<br>Quest1</div>
+    <div class="slide-title">TECHNICAL APPROACH & IMPLEMENTATION</div>
+    <img src="/img/sih_logo.png" onerror="this.src='/img/logo_icon_dark.png'" style="height:40px" alt="SIH 2026">
+  </div>
+  <div class="s3-grid">
+    <div>
+      <div class="step-card" style="border-left-color:#0284c7">
+        <h4>1. Terrain Ingestion & D8 Routing</h4>
+        <p>Copernicus GLO-30 DEM, D8 downhill flow direction, 65+ dam river network centerlines (150-400 nodes).</p>
+      </div>
+      <div class="step-card" style="border-left-color:#ea580c">
+        <h4>2. Breach Mechanics & Kinematics</h4>
+        <p>Froehlich (2008), MacDonald & Langridge, geotechnical erosion (k_d, tau_c) producing peak hydrograph Q(t).</p>
+      </div>
+      <div class="step-card" style="border-left-color:#166534">
+        <h4>3. SPH & Delft3D Hydrodynamic Routing</h4>
+        <p>Lagrangian particle shockwave tracking + 2D DEM bathtub cross-section solver with 1D Muskingum-Cunge diffusion fallback.</p>
+      </div>
+      <div class="step-card" style="border-left-color:#9333ea">
+        <h4>4. HADR Decision Support & GIS Export</h4>
+        <p>Time-stepped arrival contours, building/population exposure triage, instant .shp & .kml generation, GEE SAR cross-check.</p>
+      </div>
+    </div>
+    <div>
+      <table class="table-tech">
+        <thead>
+          <tr><th>Category</th><th>Technologies Used</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="cat">FrontEnd</td><td>HTML5, CSS3, JavaScript (ES6+), Leaflet.js, Canvas, Responsive Mobile UI, Multi-Scenario & Animation Docks</td></tr>
+          <tr><td class="cat">BackEnd & Solvers</td><td>FastAPI, Python 3.12, NumPy, SciPy, Rasterio, Shapely, SPH & Delft3D Solvers, Froehlich / MacDonald Breach</td></tr>
+          <tr><td class="cat">Earth Observation</td><td>ESA Sentinel-1 SAR (IW mode, VV polarization), Copernicus GLO-30 30m DEM, Google Earth Engine API, OSM Overpass</td></tr>
+          <tr><td class="cat">Database & Storage</td><td>SQLite with WAL Mode & Connection Pooling, Native ESRI Shapefile Package Generator (.zip), Google Earth 3D KML</td></tr>
+          <tr><td class="cat">Deployment</td><td>Uvicorn ASGI Server, Docker, Local / Offline Edge Deployable (Zero Cloud Dependency during Disaster Outages)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>GitHub Repository: https://github.com/visionquest-jalraksha</span>
+    <span>@SIH Idea submission- Template</span>
+    <span class="slide-num">3</span>
+  </div>
+</div>
+
+<!-- ════════ SLIDE 4: FEASIBILITY AND VIABILITY ════════ -->
+<div class="slide-viewport" id="slide-4">
+  <div class="slide-header">
+    <div class="badge-vq">Vision<br>Quest1</div>
+    <div class="slide-title">FEASIBILITY AND VIABILITY</div>
+    <img src="/img/sih_logo.png" onerror="this.src='/img/logo_icon_dark.png'" style="height:40px" alt="SIH 2026">
+  </div>
+  <div class="s4-grid">
+    <div class="col-card col-feas">
+      <h3 style="color:#b45309">FEASIBILITY ANALYSIS ⭐⭐⭐⭐</h3>
+      <div class="col-item"><b>Infrastructure Reusability:</b> Pure Python/NumPy optimized solver runs on standard edge laptops and command tablets without GPU clusters.</div>
+      <div class="col-item"><b>Scalable National Deployment:</b> 65+ major Indian dams pre-configured across all river basins; universal 'any river' DEM routing across India.</div>
+      <div class="col-item"><b>Cost-Effectiveness:</b> 100% open-source stack completely replaces expensive multi-lakh rupee proprietary software licenses.</div>
+      <div class="col-item"><b>Environmental Feasibility:</b> Operates entirely offline with local caching during severe power and network grid failures in disaster zones.</div>
+    </div>
+    <div class="col-card col-viab">
+      <h3 style="color:var(--navy)">VIABILITY ✔️</h3>
+      <div class="col-item"><b>Proven Scientific Concept:</b> Ground-truth validated against real Indian HADR disasters: Rishi Ganga (2021), South Lhonak GLOF (2023), Phuktal (2015), and Idukki (2018).</div>
+      <div class="col-item"><b>Operational Market Demand:</b> Fulfills mandates of NDMA, Central Water Commission (CWC), NTRO, SDMA, and Indian Armed Forces HADR units.</div>
+      <div class="col-item"><b>Automated Transparency:</b> Instant generation of production-grade ESRI Shapefiles, 3D Google Earth KML files, and executive disaster dossiers.</div>
+      <div class="col-item"><b>Social & Life-Safety Impact:</b> Maximizes golden-hour evacuation notice, protecting vulnerable downstream communities and critical infrastructure.</div>
+    </div>
+    <div class="col-card col-biz">
+      <h3 style="color:var(--green)">BUSINESS POTENTIAL 📈</h3>
+      <div class="col-item"><b>Government Cost Savings:</b> Reduces simulation turnaround from 4–7 days to under 15 seconds, saving crores in manual survey and planning costs.</div>
+      <div class="col-item"><b>Inter-Agency Synergy:</b> Single operational picture connecting CWC dam authorities, NTRO intelligence, NDMA relief coordinators, and collectors.</div>
+      <div class="col-item"><b>Insurance & Audit Potential:</b> Building-level and agricultural flood depth data enables rapid post-disaster insurance verification and recovery budgeting.</div>
+      <div class="col-item"><b>High Scalability:</b> Readily exportable to international transboundary river monitoring across South Asia (Indus, Brahmaputra, Ganga basins).</div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>@SIH Idea submission- Template</span>
+    <span class="slide-num">4</span>
+  </div>
+</div>
+
+<!-- ════════ SLIDE 5: IMPACT AND BENEFITS ════════ -->
+<div class="slide-viewport" id="slide-5">
+  <div class="slide-header">
+    <div class="badge-vq">Vision<br>Quest1</div>
+    <div class="slide-title">IMPACT AND BENEFITS</div>
+    <img src="/img/sih_logo.png" onerror="this.src='/img/logo_icon_dark.png'" style="height:40px" alt="SIH 2026">
+  </div>
+  <div class="s5-grid">
+    <div>
+      <table class="table-comp">
+        <thead>
+          <tr><th>Feature</th><th>Existing GIS / Flood Tools</th><th>Jal Raksha Platform</th><th>Jal Raksha Value / Benefit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="feat">Primary Focus</td><td>Static mapping / research models</td><td>Automated Dam Break & HADR DSS</td><td class="val">Rapid, purpose-built crisis decision support</td></tr>
+          <tr><td class="feat">Hydro Solvers</td><td>Single 1D or heavy desktop 2D</td><td>Dual SPH + Delft3D SWE Ensemble</td><td class="val">Captures near shockwave & valley spread</td></tr>
+          <tr><td class="feat">Simulation Speed</td><td>Hours to multiple days</td><td>10 – 30 seconds on-the-fly</td><td class="val">Golden hour rapid tactical response</td></tr>
+          <tr><td class="feat">Dam Registry</td><td>Single dam project file</td><td>65+ Indian Dams + Any River Tool</td><td class="val">Pan-India coverage across all river basins</td></tr>
+          <tr><td class="feat">Terrain & DEM</td><td>Manual download & clipping</td><td>Copernicus GLO-30 30m auto-fetch</td><td class="val">Zero manual GIS preparation required</td></tr>
+          <tr><td class="feat">Satellite Check</td><td>None or manual post-study</td><td>Google Earth Engine Sentinel-1 SAR</td><td class="val">Objective ground-truth satellite validation</td></tr>
+          <tr><td class="feat">GIS Export</td><td>Proprietary project formats</td><td>Shapefile (.shp), KML, GeoJSON, CSV</td><td class="val">Instant delivery to QGIS, ArcGIS, Google Earth</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hydro-card">
+      <h4>HYDRODYNAMIC WAVE PROPAGATION</h4>
+      <div class="kpi-row">
+        <div class="lbl">Peak Breach Discharge (Qp)</div>
+        <div class="val">41,641 m³/s</div>
+        <div class="sub">Simulated at Idukki Arch Dam extreme monsoon release</div>
+      </div>
+      <div class="kpi-row">
+        <div class="lbl">Maximum Water Depth</div>
+        <div class="val" style="color:#f87171">18.33 meters</div>
+        <div class="sub">Gorge depth rapidly dissipating along valley reach</div>
+      </div>
+      <div class="kpi-row">
+        <div class="lbl">Earliest Arrival Time</div>
+        <div class="val" style="color:#fbbf24">1.7 minutes</div>
+        <div class="sub">Instant alert for nearest vulnerable settlement node</div>
+      </div>
+      <div class="kpi-row">
+        <div class="lbl">Inundation Corridor</div>
+        <div class="val" style="color:#38bdf8">43.8 km</div>
+        <div class="sub">88 cross-sections down to Arabian Sea confluence</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>@SIH Idea submission- Template</span>
+    <span class="slide-num">5</span>
+  </div>
+</div>
+
+<!-- ════════ SLIDE 6: RESEARCH AND REFERENCES ════════ -->
+<div class="slide-viewport" id="slide-6">
+  <div class="slide-header">
+    <div class="badge-vq">Vision<br>Quest1</div>
+    <div class="slide-title">RESEARCH, REFERENCES & UI/UX SHOWCASE</div>
+    <img src="/img/sih_logo.png" onerror="this.src='/img/logo_icon_dark.png'" style="height:40px" alt="SIH 2026">
+  </div>
+  <div class="s6-grid">
+    <div class="ref-card" style="border-left-color:#0284c7">
+      <h4>Copernicus GLO-30 & D8 Flow</h4>
+      <p>Global 30m DEM elevation matrix with D8 downslope flow direction routing.</p>
+    </div>
+    <div class="ref-card" style="border-left-color:#ea580c">
+      <h4>SPH & Delft3D Solvers</h4>
+      <p>Smoothed-Particle Hydrodynamics (Lagrangian) & 2D Saint-Venant shallow water equations.</p>
+    </div>
+    <div class="ref-card" style="border-left-color:#166534">
+      <h4>Froehlich & Hanson-Temple</h4>
+      <p>Empirical breach geometry (2008) and cohesive soil erosion detachment rates (k_d, tau_c).</p>
+    </div>
+    <div class="ref-card" style="border-left-color:#9333ea">
+      <h4>ESA Sentinel-1 SAR & GEE</h4>
+      <p>Near-real-time dual-polarization (IW/VV) radar backscatter change detection (Δσ° &lt; -2.5 dB).</p>
+    </div>
+    <div class="ref-card" style="border-left-color:#dc2626">
+      <h4>CWC & NDMA Guidelines</h4>
+      <p>Central Water Commission Guidelines for Mapping Flood Inundation Due to Dam Break (2018).</p>
+    </div>
+    <div class="ref-card" style="border-left-color:#0891b2">
+      <h4>OpenStreetMap & Exposure</h4>
+      <p>Automated building footprint spatial join with configurable INR economic loss modeling.</p>
+    </div>
+  </div>
+  <div class="ui-showcase-box">
+    <h4>JAL RAKSHA USER INTERFACE & LIVE CAPABILITIES SHOWCASE</h4>
+    <div class="ui-cols">
+      <div>
+        <b>Interactive GIS Workspace</b>
+        • Leaflet.js with Google Hybrid, ESRI Sat & Topo<br>
+        • 65+ Indian Major Dams Registry Explorer<br>
+        • Draw Centerline HUD for Any Indian River
+      </div>
+      <div>
+        <b>Hydrodynamic Control Suite</b>
+        • SPH vs Delft3D side-by-side solver comparison<br>
+        • Time-stepped wave animation timeline dock<br>
+        • 4 Multi-Scenario inundation extent overlays
+      </div>
+      <div>
+        <b>Emergency Command & Exports</b>
+        • One-click ESRI Shapefile Package (.zip)<br>
+        • Google Earth 3D KML with depth contours<br>
+        • Google Earth Engine Sentinel-1 SAR script
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>@SIH Idea submission- Template</span>
+    <span class="slide-num">6</span>
+  </div>
+</div>
+
+<script>
+  let cur = 1;
+  const total = 6;
+  const counter = document.getElementById('slideCounter');
+
+  function show(idx) {
+    if (idx < 1) idx = 1;
+    if (idx > total) idx = total;
+    cur = idx;
+    document.querySelectorAll('.slide-viewport').forEach((el, i) => {
+      el.classList.toggle('active', (i + 1) === cur);
+    });
+    counter.textContent = `Slide ${cur} / ${total}`;
+  }
+
+  document.getElementById('btnPrev').onclick = () => show(cur - 1);
+  document.getElementById('btnNext').onclick = () => show(cur + 1);
+  document.getElementById('btnFullscreen').onclick = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  };
+
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') show(cur + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') show(cur - 1);
+    if (e.key === 'f' || e.key === 'F') document.getElementById('btnFullscreen').click();
+  });
+</script>
+</body>
+</html>

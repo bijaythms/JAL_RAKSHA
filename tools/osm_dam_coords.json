@@ -1,0 +1,447 @@
+{
+  "DAM-TEHRI": {
+    "catalog_lat": 30.378,
+    "catalog_lon": 78.48,
+    "osm_lat": 30.37618,
+    "osm_lon": 78.48031,
+    "osm_name": "Tehri Dam, Alum, Bhagirathipuram, Tehri, Tehri Garhwal, Utta",
+    "dist_km": 0.21
+  },
+  "DAM-KOTESHWAR": {
+    "catalog_lat": 30.279,
+    "catalog_lon": 78.498,
+    "osm_lat": 30.26017,
+    "osm_lon": 78.49791,
+    "osm_name": "Koteshwar Dam, pendars, Koteshwar, Narendra Nagar, Tehri Gar",
+    "dist_km": 2.09
+  },
+  "DAM-RAMGANGA": {
+    "catalog_lat": 29.521,
+    "catalog_lon": 78.761,
+    "osm_lat": 29.518,
+    "osm_lon": 78.75822,
+    "osm_name": "Ramganga Dam, Kotdwara, Pauri Garhwal, Uttarakhand, India",
+    "dist_km": 0.45
+  },
+  "DAM-LAKHWAR": {
+    "catalog_lat": 30.45,
+    "catalog_lon": 77.85,
+    "osm_lat": 30.52077,
+    "osm_lon": 77.91522,
+    "osm_name": "Lakhwar Dam, Dadi, Lakhwar, Kalsi, Dehradun, Uttarakhand, In",
+    "dist_km": 10.68
+  },
+  "DAM-DHAULIGANGA": {
+    "catalog_lat": 29.967,
+    "catalog_lon": 80.598,
+    "osm_lat": 29.97875,
+    "osm_lon": 80.57323,
+    "osm_name": "Dhauliganga dam, Chhirkala, Dharchula, Pithoragarh district,",
+    "dist_km": 3.04
+  },
+  "DAM-BHAKRA": {
+    "catalog_lat": 31.411,
+    "catalog_lon": 76.435,
+    "osm_lat": 31.41159,
+    "osm_lon": 76.43264,
+    "osm_name": "Bhakra Dam, Naina Devi, Bilaspur, Bangana, Una, Himachal Pra",
+    "dist_km": 0.27
+  },
+  "DAM-PONG": {
+    "catalog_lat": 31.968,
+    "catalog_lon": 75.952,
+    "osm_lat": 31.97086,
+    "osm_lon": 75.94589,
+    "osm_name": "Pong Dam, Fatehpur, Kangra, Himachal Pradesh, India",
+    "dist_km": 0.75
+  },
+  "DAM-CHAMERA": {
+    "catalog_lat": 32.593,
+    "catalog_lon": 75.986,
+    "osm_lat": 32.59686,
+    "osm_lon": 75.98552,
+    "osm_name": "Chamera Dam, Bhalai, Chamba, Himachal Pradesh, India",
+    "dist_km": 0.43
+  },
+  "DAM-KOLDAM": {
+    "catalog_lat": 31.365,
+    "catalog_lon": 76.86,
+    "osm_lat": 31.38321,
+    "osm_lon": 76.87468,
+    "osm_name": "Koldam Dam, Ropa, Bilaspur Sadar, Bilaspur, Sundarnagar, Man",
+    "dist_km": 2.6
+  },
+  "DAM-NATHPA-JHAKRI": {
+    "catalog_lat": 31.564,
+    "catalog_lon": 77.979,
+    "osm_lat": 31.56169,
+    "osm_lon": 77.99195,
+    "osm_name": "Nathpa Jhakri Dam, Nichar, Kinnaur, Himachal Pradesh, India",
+    "dist_km": 1.46
+  },
+  "DAM-BAGLIHAR": {
+    "catalog_lat": 33.155,
+    "catalog_lon": 75.316,
+    "osm_lat": 33.16196,
+    "osm_lon": 75.32777,
+    "osm_name": "Baglihar Dam, Chhangabar, Dharmund, Ramban, Ramban district,",
+    "dist_km": 1.52
+  },
+  "DAM-SALAL": {
+    "catalog_lat": 33.141,
+    "catalog_lon": 74.829,
+    "osm_lat": 33.14234,
+    "osm_lon": 74.80996,
+    "osm_name": "Salal Dam, Salal, Reasi, Reasi district, Jammu and Kashmir, ",
+    "dist_km": 2.12
+  },
+  "DAM-URI": {
+    "catalog_lat": 34.145,
+    "catalog_lon": 74.072,
+    "osm_lat": 34.09183,
+    "osm_lon": 74.0312,
+    "osm_name": "URI II, Uri, Baramulla, Jammu and Kashmir, 193123, India",
+    "dist_km": 7.44
+  },
+  "DAM-SARDAR-SAROVAR": {
+    "catalog_lat": 21.831,
+    "catalog_lon": 73.748,
+    "osm_lat": 21.8298,
+    "osm_lon": 73.74972,
+    "osm_name": "Sardar Sarovar Dam, Garudeshwar Taluka, Narmada, Gujarat, In",
+    "dist_km": 0.23
+  },
+  "DAM-UKAI": {
+    "error": "Not found"
+  },
+  "DAM-KADANA": {
+    "catalog_lat": 23.31,
+    "catalog_lon": 73.832,
+    "osm_lat": 23.30601,
+    "osm_lon": 73.82595,
+    "osm_name": "Kadana Dam, Kadana, Kadana Taluka, Mahisagar, Gujarat, India",
+    "dist_km": 0.8
+  },
+  "DAM-DHAROI": {
+    "catalog_lat": 24.004,
+    "catalog_lon": 72.852,
+    "osm_lat": 23.98632,
+    "osm_lon": 72.91168,
+    "osm_name": "Dharoi Dam, Vadali Taluka, Sabarkantha, Gujarat, India",
+    "dist_km": 6.91
+  },
+  "DAM-KOYNA": {
+    "catalog_lat": 17.4,
+    "catalog_lon": 73.75,
+    "osm_lat": 17.40228,
+    "osm_lon": 73.75097,
+    "osm_name": "Koyna Dam, Gokul, Patan, Satara, Maharashtra, India",
+    "dist_km": 0.28
+  },
+  "DAM-JAYAKWADI": {
+    "catalog_lat": 19.488,
+    "catalog_lon": 75.385,
+    "osm_lat": 19.47248,
+    "osm_lon": 75.36392,
+    "osm_name": "Jayakwadi Dam, Paithan, Chhatrapati Sambhajinagar, Maharasht",
+    "dist_km": 2.91
+  },
+  "DAM-UJJANI": {
+    "error": "Not found"
+  },
+  "DAM-BHATSA": {
+    "catalog_lat": 19.524,
+    "catalog_lon": 73.435,
+    "osm_lat": 19.51313,
+    "osm_lon": 73.41738,
+    "osm_name": "Bhatsa Dam, Shahapur Subdistrict, Thane, Maharashtra, India",
+    "dist_km": 2.3
+  },
+  "DAM-INDIRA-SAGAR": {
+    "catalog_lat": 22.285,
+    "catalog_lon": 76.471,
+    "osm_lat": 22.28454,
+    "osm_lon": 76.47188,
+    "osm_name": "Indira Sagar, Harsud Tahsil, Khandwa, Madhya Pradesh, India",
+    "dist_km": 0.11
+  },
+  "DAM-GANDHI-SAGAR": {
+    "catalog_lat": 24.707,
+    "catalog_lon": 75.556,
+    "osm_lat": 24.29276,
+    "osm_lon": 75.33798,
+    "osm_name": "Gandhi Sagar Dam, Malhargarh Tahsil, Mandsaur, Madhya Prades",
+    "dist_km": 51.96
+  },
+  "DAM-BANSAGAR": {
+    "catalog_lat": 24.195,
+    "catalog_lon": 81.288,
+    "osm_lat": 24.18926,
+    "osm_lon": 81.28718,
+    "osm_name": "Bansagar Dam, Bakeli, Beohari Tahsil, Shahdol, Ramnagar Tahs",
+    "dist_km": 0.64
+  },
+  "DAM-BARGI": {
+    "catalog_lat": 22.942,
+    "catalog_lon": 79.917,
+    "osm_lat": 22.93902,
+    "osm_lon": 79.92165,
+    "osm_name": "Bargi Dam, Khapa, Jabalpur Tahsil, Jabalpur, Madhya Pradesh,",
+    "dist_km": 0.61
+  },
+  "DAM-TAWA": {
+    "error": "Not found"
+  },
+  "DAM-RANA-PRATAP-SAGAR": {
+    "catalog_lat": 24.922,
+    "catalog_lon": 75.59,
+    "osm_lat": 24.91767,
+    "osm_lon": 75.58275,
+    "osm_name": "Rana Pratap Sagar Dam, Baroli, Rawatbhata, Rawatbhata Tehsil",
+    "dist_km": 0.94
+  },
+  "DAM-BISALPUR": {
+    "error": "Not found"
+  },
+  "DAM-MAHI-BAJAJ": {
+    "catalog_lat": 23.63,
+    "catalog_lon": 74.542,
+    "osm_lat": 23.62849,
+    "osm_lon": 74.54728,
+    "osm_name": "Mahi Bajaj Sagar Dam, Choti Sarvan Tehsil, Banswara, Rajasth",
+    "dist_km": 0.61
+  },
+  "DAM-HIRAKUD": {
+    "catalog_lat": 21.528,
+    "catalog_lon": 83.869,
+    "osm_lat": 21.54924,
+    "osm_lon": 83.90113,
+    "osm_name": "Hirakud Dam, Hirakud Township, Hirakud, Sambalpur, Odisha, I",
+    "dist_km": 4.28
+  },
+  "DAM-RENGALI": {
+    "catalog_lat": 21.282,
+    "catalog_lon": 85.033,
+    "osm_lat": 21.27677,
+    "osm_lon": 85.03248,
+    "osm_name": "Rengali Dam, Rengali, Rengali Damsite, Angul, Odisha, India",
+    "dist_km": 0.58
+  },
+  "DAM-INDRAVATI": {
+    "error": "Not found"
+  },
+  "DAM-NAGARJUNA-SAGAR": {
+    "error": "Not found"
+  },
+  "DAM-SRISAILAM": {
+    "catalog_lat": 16.088,
+    "catalog_lon": 78.897,
+    "osm_lat": 16.0868,
+    "osm_lon": 78.89704,
+    "osm_name": "Srisailam Dam, Sundipenta, Srisailam, Nandyal, Andhra Prades",
+    "dist_km": 0.13
+  },
+  "DAM-POLAVARAM": {
+    "catalog_lat": 17.258,
+    "catalog_lon": 81.656,
+    "osm_lat": 17.25734,
+    "osm_lon": 81.64635,
+    "osm_name": "Polavaram dam view point, Polavaram- singanapalli road, Pola",
+    "dist_km": 1.07
+  },
+  "DAM-TUNGABHADRA": {
+    "catalog_lat": 15.26,
+    "catalog_lon": 76.36,
+    "osm_lat": 15.26359,
+    "osm_lon": 76.33367,
+    "osm_name": "Tungabhadra Dam, Tungabhadra Colony, Hosapete, Hosapete talu",
+    "dist_km": 2.95
+  },
+  "DAM-ALMATTI": {
+    "error": "Not found"
+  },
+  "DAM-KRS": {
+    "error": "Not found"
+  },
+  "DAM-SUPA": {
+    "catalog_lat": 15.278,
+    "catalog_lon": 74.531,
+    "osm_lat": 15.2762,
+    "osm_lon": 74.52692,
+    "osm_name": "Supa Dam, Ganeshagudi, Supa taluk, Uttara Kannada, Karnataka",
+    "dist_km": 0.5
+  },
+  "DAM-LINGANAMAKKI": {
+    "catalog_lat": 14.195,
+    "catalog_lon": 74.839,
+    "osm_lat": 14.1759,
+    "osm_lon": 74.84646,
+    "osm_name": "Linganamakki Dam, Linganamakki, Sagara taluk, Shimoga, Karna",
+    "dist_km": 2.28
+  },
+  "DAM-IDUKKI": {
+    "catalog_lat": 9.8458,
+    "catalog_lon": 76.9742,
+    "osm_lat": 9.84352,
+    "osm_lon": 76.97624,
+    "osm_name": "Idukki Arch Dam, Alinchuvadu, Idukki, Kerala, India",
+    "dist_km": 0.34
+  },
+  "DAM-CHERUTHONI": {
+    "catalog_lat": 9.8509,
+    "catalog_lon": 76.9725,
+    "osm_lat": 9.84179,
+    "osm_lon": 76.96307,
+    "osm_name": "Idukki Dam Road- Cheruthoni side, Alinchuvadu, Cheruthoni, I",
+    "dist_km": 1.46
+  },
+  "DAM-MULLAPERIYAR": {
+    "catalog_lat": 9.54,
+    "catalog_lon": 77.14,
+    "osm_lat": 9.52863,
+    "osm_lon": 77.14411,
+    "osm_name": "Mullaperiyar Dam, Peerumade, Idukki, Kerala, India",
+    "dist_km": 1.34
+  },
+  "DAM-MALAMPUZHA": {
+    "catalog_lat": 10.833,
+    "catalog_lon": 76.685,
+    "osm_lat": 10.82853,
+    "osm_lon": 76.6857,
+    "osm_name": "Malampuzha Dam, Palakkad, Kerala, 678001, India",
+    "dist_km": 0.5
+  },
+  "DAM-SHOLAYAR": {
+    "catalog_lat": 10.301,
+    "catalog_lon": 76.758,
+    "osm_lat": 10.32182,
+    "osm_lon": 76.73548,
+    "osm_name": "Sholayar Dam, Chalakkudy, Thrissur, Kerala, India",
+    "dist_km": 3.4
+  },
+  "DAM-METTUR": {
+    "catalog_lat": 11.8,
+    "catalog_lon": 77.8,
+    "osm_lat": 11.80349,
+    "osm_lon": 77.80608,
+    "osm_name": "Mettur Dam, Thangamapuripatinam, Salem Camp, Mettur, Salem, ",
+    "dist_km": 0.78
+  },
+  "DAM-BHAVANISAGAR": {
+    "error": "Not found"
+  },
+  "DAM-VAIGAI": {
+    "catalog_lat": 10.054,
+    "catalog_lon": 77.587,
+    "osm_lat": 10.04645,
+    "osm_lon": 77.58213,
+    "osm_name": "Vaigai Dam, Andipatti, Theni, Tamil Nadu, India",
+    "dist_km": 1.0
+  },
+  "DAM-RIHAND": {
+    "catalog_lat": 24.208,
+    "catalog_lon": 83.023,
+    "osm_lat": 24.2031,
+    "osm_lon": 83.00622,
+    "osm_name": "Rihand Dam, Pipri, Dudhi, Sonbhadra, Uttar Pradesh, India",
+    "dist_km": 1.94
+  },
+  "DAM-MATATILA": {
+    "catalog_lat": 25.105,
+    "catalog_lon": 78.38,
+    "osm_lat": 25.10372,
+    "osm_lon": 78.36828,
+    "osm_name": "Matatila Dam, Harinagar, Khaniyadhana Tahsil, Shivpuri, Madh",
+    "dist_km": 1.31
+  },
+  "DAM-KOSI-BARRAGE": {
+    "catalog_lat": 26.518,
+    "catalog_lon": 86.924,
+    "osm_lat": 26.5262,
+    "osm_lon": 86.92708,
+    "osm_name": "Kosi Barrage, Koshi-08, \u0915\u094b\u0936\u0940 \u0917\u093e\u0909\u0901\u092a\u093e\u0932\u093f\u0915\u093e, \u0938\u0941\u0928\u0938\u0930\u0940 \u091c\u093f\u0932\u094d\u0932\u093e, \u0915\u094b\u0936\u0940",
+    "dist_km": 0.97
+  },
+  "DAM-MAITHON": {
+    "error": "Not found"
+  },
+  "DAM-PANCHET": {
+    "catalog_lat": 23.684,
+    "catalog_lon": 86.745,
+    "osm_lat": 23.68101,
+    "osm_lon": 86.74729,
+    "osm_name": "Panchet Dam, Panchet, Nirsa-Cum-Chirkunda, Dhanbad, Jharkhan",
+    "dist_km": 0.42
+  },
+  "DAM-KANGSABATI": {
+    "catalog_lat": 22.96,
+    "catalog_lon": 86.786,
+    "osm_lat": 22.96393,
+    "osm_lon": 86.78893,
+    "osm_name": "Kangsabati Kumari Dam, Mukutmanipur, Khatra, Bankura, West B",
+    "dist_km": 0.54
+  },
+  "DAM-FARAKKA": {
+    "catalog_lat": 24.805,
+    "catalog_lon": 87.925,
+    "osm_lat": 24.80482,
+    "osm_lon": 87.93357,
+    "osm_name": "Farakka Barrage, Farakka Barrage Township, Farakka, Murshida",
+    "dist_km": 0.95
+  },
+  "DAM-TEESTA-V": {
+    "catalog_lat": 27.367,
+    "catalog_lon": 88.528,
+    "osm_lat": 27.2421,
+    "osm_lon": 88.4776,
+    "osm_name": "TEESTA -V, Singtam, Gangtok subdivision, Gangtok, Sikkim, In",
+    "dist_km": 14.95
+  },
+  "DAM-SOUTH-LHONAK": {
+    "error": "Not found"
+  },
+  "DAM-SUBANSIRI": {
+    "error": "Not found"
+  },
+  "DAM-UMIAM": {
+    "catalog_lat": 25.656,
+    "catalog_lon": 91.905,
+    "osm_lat": 25.65936,
+    "osm_lon": 91.90024,
+    "osm_name": "Umiam Dam, Umsning, Ri-Bhoi, Meghalaya, 793022, India",
+    "dist_km": 0.65
+  },
+  "DAM-DOYANG": {
+    "catalog_lat": 26.223,
+    "catalog_lon": 94.275,
+    "osm_lat": 26.23234,
+    "osm_lon": 94.26089,
+    "osm_name": "Doyang HEP Dam, Sanis, Wokha, Nagaland, India",
+    "dist_km": 1.88
+  },
+  "DAM-HASDEO-BANGO": {
+    "error": "Not found"
+  },
+  "DAM-GANGREL": {
+    "error": "Not found"
+  },
+  "DAM-RISHIGANGA": {
+    "catalog_lat": 30.483,
+    "catalog_lon": 79.721,
+    "osm_lat": 30.45122,
+    "osm_lon": 79.78988,
+    "osm_name": "Rishi Ganga, Reni, Joshimath Tehsil, Chamoli, Uttarakhand, I",
+    "dist_km": 8.42
+  },
+  "DAM-GYA": {
+    "catalog_lat": 32.95,
+    "catalog_lon": 77.62,
+    "osm_lat": 33.65305,
+    "osm_lon": 77.73516,
+    "osm_name": "Gya, Leh district, Ladakh, India",
+    "dist_km": 79.08
+  },
+  "DAM-PAREECHU": {
+    "error": "Not found"
+  }
+}
